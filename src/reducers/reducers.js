@@ -1,10 +1,10 @@
 import * as actions from "../actions/types";
 
 const initialState = {
-    items: [],
+    data: [],
     loading: false,
     error: null,
-    ready: true
+    finished: false
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -13,14 +13,23 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: true,
-                error: null
+                error: null,
+
             };
         case actions.REQ_FAIL:
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.payload,
+
             };
+        case actions.REQ_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                data: action.payload,
+                finished: true
+            }
         default:
             return state;
     }
