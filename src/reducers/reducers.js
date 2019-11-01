@@ -1,34 +1,30 @@
 import * as actions from "../actions/types";
 
-const initialState = {
+const initState = {
     data: [],
-    loading: false,
     error: null,
-    finished: false
+    ready: false,
 };
 
-export default function rootReducer(state = initialState, action) {
+export default function rootReducer(state = initState, action) {
     switch (action.type) {
         case actions.REQ_INIT:
             return {
-                ...state,
-                loading: true,
+                ready: false,
                 error: null,
-
+                ...state,
             };
         case actions.REQ_FAIL:
             return {
-                ...state,
-                loading: false,
+                ready: true,
                 error: action.payload,
-
+                ...state,
             };
         case actions.REQ_SUCCESS:
             return {
-                ...state,
-                loading: false,
-                data: action.payload,
-                finished: true
+                ready: true,
+                error: null,
+                data: action.payload
             }
         default:
             return state;

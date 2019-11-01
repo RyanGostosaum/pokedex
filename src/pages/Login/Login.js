@@ -18,7 +18,7 @@ export default function Login({ history }) {
     return (
         <>
             <p>
-                Comece sua jornada para ser o <strong> melhor treinador </strong>
+                Seja o <strong> melhor treinador </strong>
             </p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>

@@ -4,8 +4,9 @@ import * as actions from './types';
 function fetchData() {
     return dispatch => {
         dispatch(reqInit())
-        return api
-            .get("/pokemon?limit=151").then(res => {
+        api
+            .get("/pokemon?limit=151")
+            .then(res => {
                 dispatch(fetchDataSucess(res.data))
                 return res.data
             }).catch(e => dispatch(reqFail(e)))

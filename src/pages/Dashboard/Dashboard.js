@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { FetchDataIfNeeded } from '../../actions/index';
-
-function Dashboard(props) {
+import api from '../../service/api';
+import './index.css'
+function Dashboard() {
     const [poke, setPoke] = useState([])
     useEffect(() => {
-        props.dispatch(FetchDataIfNeeded())
+        async function loadPoke() {
+            const response = await api.get('/pokemon?limit=9')
+            setPoke(response.data.results)
+        }
+        loadPoke()
     }, [])
-
-    useEffect(() => {
-        console.log(props.state.finished)
-        setPoke(props.state.data)
-    })
 
     return (
         <div>
-            {props.finished ? <ul className="spot-list" >
-                {
-                    poke.map(p => (
-                        <li key={p.name}>
-                            <strong>{p.name}</strong>
-                        </li>
-                    ))
-                }
-            </ul> : 'Loading..'}
+            <ul className="spot-list">
+                {poke.map((poke, i) => (
+                    <li key={poke.name}>
+                        <header style={{ backgroundImage: `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png)` }} />
+                        <strong>{poke.name}</strong>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-const mapStateToProps = (state) => ({
-    state: state.rootReducer
-});
 
-export default connect(mapStateToProps)(Dashboard)
+
+export default Dashboard;
 
