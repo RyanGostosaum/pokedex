@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../service/api';
+import axios from "axios";
 import './index.css'
 function Dashboard() {
     const [poke, setPoke] = useState([])
     useEffect(() => {
         async function loadPoke() {
-            const response = await api.get('/pokemon?limit=9')
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=9')
             setPoke(response.data.results)
         }
         loadPoke()
