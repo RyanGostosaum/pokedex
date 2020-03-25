@@ -1,4 +1,4 @@
-ul.spot-list {
+ul.poke-list {
     width: 100%;
     list-style: none;
     display: grid;
@@ -8,26 +8,26 @@ ul.spot-list {
     align-items: center;
 }
 
-ul.spot-list li {
+ul.poke-list li {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-ul.spot-list li header {
+ul.poke-list li header {
     width: 80%;
     height: 150px;
     background-size: cover;
     align-self: center;
 }
 
-ul.spot-list li strong {
+ul.poke-list li strong {
     margin-top: 10px;
     font-size: 24px;
     color: #444;
 }
 
-ul.spot-list li span {
+ul.poke-list li span {
     font-size: 15px;
     color: #999;
 }
